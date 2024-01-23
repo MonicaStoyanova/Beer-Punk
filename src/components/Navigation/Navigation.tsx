@@ -5,7 +5,7 @@ const Navigation = () => {
     return (
         <nav className={styles.navigationContainer}>
             <ul className={styles.navigationList}>
-                <li><Link to="/favorite">Favorite</Link></li>
+                <li><Link to="/favorite">Favorites</Link></li>
                 <li><Link to="/random-beer">Random Beer</Link></li>
                 <li><Link to="/login">Login</Link></li>
             </ul>

@@ -10,6 +10,7 @@ const SearchBar = () => {
     const [beerName, setBeerName] = useState<string>('');
     const [suggestions, setSuggestions] = useState<BeerSuggestion[]>([]);
 
+
     useEffect(() => {
         const fetchData = async () => {
             if (beerName) {

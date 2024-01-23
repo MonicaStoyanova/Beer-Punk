@@ -69,6 +69,7 @@ const BeerList = () => {
                         <FontAwesomeIcon
                             icon={favorites.includes(beer.id) ? faStar : farStar}
                             onClick={() => toggleFavorite(beer.id)}
+                            title={!favorites.includes(beer.id) ? "Add to favorites" : "Remove from favorites"}
                         />
 
                     </div>
