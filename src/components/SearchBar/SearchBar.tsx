@@ -1,30 +1,42 @@
-import { useEffect, useState } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './SearchBar.module.css';
 
-const SearchBar = () => {
-    const [beerName, setBeerName] = useState('');
-    const [suggestions, setSuggestions] = useState([]);
+type BeerSuggestion = {
+    id: number
+}
 
-    /*  useEffect(() => {
-          const fetchData = async () => {
-              try {
-                  const { data } = await axios.get(
-                      // check with postman if this is valid request
-                      // it is not
-                      `https://api.punkapi.com/v2/beers?beer_name=${beerName}
+const SearchBar = () => {
+    const [beerName, setBeerName] = useState<string>('');
+    const [suggestions, setSuggestions] = useState<BeerSuggestion[]>([]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+            if (beerName) {
+                try {
+                    const { data } = await axios.get(
+                        // check with postman if this is valid request
+                        // it is not
+                        `https://api.punkapi.com/v2/beers?beer_name=${beerName}
                       `
-                  );
-  
-                  setSuggestions(data.products);
-              } catch (error) {
-                  console.log(error);
-              }
-          };
-  
-          fetchData();
-      }, [beerName]);
-  */
+                    );
+
+                    setSuggestions(data);
+                } catch (error) {
+                    console.log(error);
+                }
+            } else {
+                setSuggestions([]); // Reset suggestions if beerName is empty
+            }
+        };
+
+        fetchData();
+    }, [beerName]);
+    // we should add regex to catch blank spaces and turn them into underscores as per documentation
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+        setBeerName(e.target.value);
+    };
+
     return (
         <div className={styles.container}>
             <input
@@ -32,9 +44,7 @@ const SearchBar = () => {
                 className={styles.textbox}
                 placeholder="Search beer name"
                 value={beerName}
-                onChange={(e) => {
-                    setBeerName(e.target.value);
-                }}
+                onChange={handleInputChange}
             />
         </div>
     );

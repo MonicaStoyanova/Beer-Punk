@@ -1,6 +1,6 @@
 
 import './App.css'
-import BeerList from './components/BeerList'
+import BeerList from './pages/BeerList/BeerList'
 import Footer from './components/Footer/Footer'
 import Header from './components/Header/Header'
 
