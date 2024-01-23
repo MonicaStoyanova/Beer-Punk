@@ -1,0 +1,6 @@
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5em 1em;
+    background-color: #b5e61d;
+}
