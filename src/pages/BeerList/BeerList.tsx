@@ -48,6 +48,8 @@ const BeerList = () => {
 
 
     return (
+        //  the card onclick should make a sound, try finding pouring sound
+        // on hoover enlarge the card
         <div className={styles.cardContainer}>
             {allBeers.map((beer) => (
                 <div className={styles.card} key={beer.id}>

@@ -3,39 +3,59 @@ import axios from 'axios';
 import styles from './SearchBar.module.css';
 
 type BeerSuggestion = {
-    id: number
+    id: number,
+    name: string
+}
+
+interface Beer {
+    id: number;
+    name: string
 }
 
 const SearchBar = () => {
     const [beerName, setBeerName] = useState<string>('');
     const [suggestions, setSuggestions] = useState<BeerSuggestion[]>([]);
+    const [debouncedBeerName, setDebouncedBeerName] = useState(beerName);
 
+    useEffect(() => {
+        const handler = setTimeout(() => {
+            setDebouncedBeerName(beerName);
+        }, 500); // Debounce delay
+
+        return () => {
+            clearTimeout(handler);
+        };
+    }, [beerName]);
 
     useEffect(() => {
         const fetchData = async () => {
-            if (beerName) {
+            if (debouncedBeerName) {
                 try {
-                    const { data } = await axios.get(
-                        // check with postman if this is valid request
-                        // it is not
-                        `https://api.punkapi.com/v2/beers?beer_name=${beerName}
-                      `
-                    );
-
-                    setSuggestions(data);
+                    const formattedQuery = debouncedBeerName.replace(/\s+/g, '_');
+                    const { data } = await axios.get<Beer[]>(`https://api.punkapi.com/v2/beers?beer_name=${formattedQuery}`);
+                    setSuggestions(data.map((beer) => ({ id: beer.id, name: beer.name })));
                 } catch (error) {
-                    console.log(error);
+                    console.error('Error fetching data:', error);
+                    setSuggestions([]);
                 }
             } else {
-                setSuggestions([]); // Reset suggestions if beerName is empty
+                setSuggestions([]);
             }
         };
 
         fetchData();
-    }, [beerName]);
-    // we should add regex to catch blank spaces and turn them into underscores as per documentation
+    }, [debouncedBeerName]);
+
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setBeerName(e.target.value);
+    };
+
+    const renderSuggestions = () => {
+        return suggestions.map((suggestion) => (
+            <div key={suggestion.id} onClick={() => setBeerName(suggestion.name)}>
+                {suggestion.name}
+            </div>
+        ));
     };
 
     return (
@@ -47,6 +67,11 @@ const SearchBar = () => {
                 value={beerName}
                 onChange={handleInputChange}
             />
+            {suggestions.length > 0 && (
+                <div className={styles.suggestions}>
+                    {renderSuggestions()}
+                </div>
+            )}
         </div>
     );
 };
