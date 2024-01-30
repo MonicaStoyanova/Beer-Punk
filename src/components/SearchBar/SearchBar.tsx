@@ -6,20 +6,17 @@ import { Beer, DEBOUNCE_DELAY } from '../../utils/consts';
 import styles from './SearchBar.module.css';
 
 
-// what is the return type?
 const SearchBar = () => {
     // state from the search bar input  
-    const [beerNameSearch, setBeerNameSearch] = useState<string>(''); // <string> here is not needed
+    const [beerNameSearch, setBeerNameSearch] = useState<string>(''); // <string> here can be omitted
     // suggested beers state based on the user searching
     const [suggestions, setSuggestions] = useState<Beer[]>([]);
-    // state for the  searched word on every few seconds where there is a keystroke
-    const [debouncedBeerName, setDebouncedBeerName] = useState<string>(beerNameSearch); // <string> here is not needed since TS understands its going to be one due to the starting value given
 
     // function to capture user search input
     useEffect(() => {
         // https://dev.to/jeetvora331/javascript-debounce-easiest-explanation--29hc
         const handler = setTimeout(() => {
-            setDebouncedBeerName(beerNameSearch);
+            setBeerNameSearch(beerNameSearch);
         }, DEBOUNCE_DELAY); // Debounce delay, sets the typed word after half a second
 
         return () => {
@@ -30,36 +27,35 @@ const SearchBar = () => {
     // fetching data based on the user searched word
     useEffect(() => {
         const fetchData = async () => {
-            if (debouncedBeerName) {
-                const suggestions = await fetchBeerSuggestions(debouncedBeerName);
-                setSuggestions(suggestions.map((beer) => ({ id: beer.id, name: beer.name })));
+            if (beerNameSearch) {
+                const suggestions = await fetchBeerSuggestions(beerNameSearch);
+                setSuggestions(suggestions);
             } else {
                 setSuggestions([]);
             }
         };
 
         fetchData();
-    }, [debouncedBeerName]);
+    }, [beerNameSearch]);
 
 
     const renderSuggestions = () => {
-
-        return suggestions.map((suggestion) => (//(suggestion) :<Beer>
-            <div key={suggestion.id} onClick={() => handleSuggestionClick(suggestion.id)}>
+        return suggestions.map((suggestion) => (
+            <div key={suggestion.id} onClick={() => handleSuggestionClick(suggestion.name)}>
                 {suggestion.name}
             </div>
         ));
     };
     // if the user clicks on one of the suggestions, the selection is saved in local storage
     // TO DO: we should show info on that clicked suggestion
-    const handleSuggestionClick = (beerId: number) => {
-        localStorage.setItem('selectedBeerId', beerId.toString());
+    const handleSuggestionClick = (beerName: string) => {
+        localStorage.setItem('selectedBeerName', beerName);
 
 
     };
     // if they click on other suggestion on the list it gets overwritten or if they continue to type it gets cleared
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-        localStorage.removeItem('selectedBeerId'); // Clear the selection
+        localStorage.removeItem('selectedBeerName'); // Clear the selection
         setBeerNameSearch(e.target.value);
     };
 
