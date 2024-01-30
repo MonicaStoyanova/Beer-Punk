@@ -15,13 +15,11 @@
 }
 
 .textbox:focus {
-    /* We'll change the border color of the textbox as long as it is being focused */
     border: 1px solid #4E1DE6;
     transition: 0.2s ease-in-out;
 }
 
 .suggestions {
-    /* Styles of the suggestions container */
     overflow-y: scroll;
     border: 1px solid #f3f3f3;
     background-color: white;
@@ -33,12 +31,10 @@
 }
 
 .suggestions.hidden {
-    /* Will hide the suggestions */
     visibility: hidden;
 }
 
 .suggestion {
-    /* Styling of a single suggestion */
     cursor: pointer;
     box-sizing: border-box;
     padding: 1px 10px;
@@ -48,6 +44,5 @@
 }
 
 .suggestion:hover {
-    /* Changing background color on hover */
     background-color: #f3f3f3;
 }

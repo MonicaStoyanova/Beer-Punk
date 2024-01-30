@@ -1,5 +1,5 @@
-//logo search bar navigation with 3 pages
 import { Link } from 'react-router-dom';
+
 import Navigation from "../Navigation/Navigation"
 import SearchBar from "../SearchBar/SearchBar"
 
