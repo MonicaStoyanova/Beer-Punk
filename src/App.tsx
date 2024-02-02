@@ -17,7 +17,7 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        {/* <Header /> */}
+        <Header />
         <Routes>
           <Route path="/" element={<BeerList />} />
           < Route path="/favorite" element={<Favorites />} />

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 
 
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-// import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
-// import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar as farStar } from '@fortawesome/free-regular-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 import { useSelector } from "react-redux";
-
+import { toggleFavorite } from "../../store/slices/favoritesSlice";
 import { useAppDispatch } from "../../store/store";
 import { RootState } from "../../store/store";
 import { fetchAllBeers } from "../../store/slices/beerPunkSlice";
@@ -16,6 +16,7 @@ import styles from "./BeerList.module.css";
 
 const BeerList = () => {
     const allBeers: Beer[] = useSelector((state: RootState) => state.beerPunk.allBeers);
+    const favorites = useSelector((state: RootState) => state.favorites.favorites);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -40,13 +41,13 @@ const BeerList = () => {
                             <b>Abv: {beer.abv}</b>
                         </p>
                     </div>
-                    {/* <div className={styles.starIcon}>
+                    <div className={styles.starIcon}>
                         <FontAwesomeIcon
-                            icon={favorites.includes(beer.name) ? faStar : farStar}
-                            onClick={() => toggleFavorite(beer.name)}
-                            title={!favorites.includes(beer.name) ? "Add to favorites" : "Remove from favorites"}
+                            icon={favorites.some(favorite => favorite.id === beer.id) ? faStar : farStar}
+                            onClick={() => dispatch(toggleFavorite(beer))}
+                            title={!favorites.some(favorite => favorite.id === beer.id) ? "Add to favorites" : "Remove from favorites"}
                         />
-                    </div> */}
+                    </div>
                 </div>
             ));
     };
