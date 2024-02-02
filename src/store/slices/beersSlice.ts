@@ -12,7 +12,7 @@ const initialState: BeerState = {
 };
 
 export const fetchAllBeers = createAsyncThunk<Beer[], void, { rejectValue: Error }>(
-    "beerPunk/getAllBeers",
+    "beers/getAllBeers",
     async (_, { rejectWithValue }) => {
         try {
             const { data } = await axios.get<Beer[]>(BASIC_URL);
@@ -23,8 +23,8 @@ export const fetchAllBeers = createAsyncThunk<Beer[], void, { rejectValue: Error
     }
 );
 
-const beerPunkSlice = createSlice({
-    name: "beerPunk",
+const beersSlice = createSlice({
+    name: "beers",
     initialState,
     reducers: {
         updateSuggestions: (state, action) => {
@@ -43,6 +43,6 @@ const beerPunkSlice = createSlice({
 
 export const {
     updateSuggestions,
-} = beerPunkSlice.actions;
+} = beersSlice.actions;
 
-export default beerPunkSlice.reducer;
+export default beersSlice.reducer;

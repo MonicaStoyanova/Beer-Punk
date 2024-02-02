@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { toggleFavorite } from "../../store/slices/favoritesSlice";
 import { useAppDispatch } from "../../store/store";
 import { RootState } from "../../store/store";
-import { fetchAllBeers } from "../../store/slices/beerPunkSlice";
+import { fetchAllBeers } from "../../store/slices/beersSlice";
 
 import BeerCard from "../../components/BeerCard/BeerCard";
 import { Beer } from "../../utils/consts";
@@ -12,7 +12,7 @@ import { Beer } from "../../utils/consts";
 import styles from "./BeerList.module.css";
 
 const BeerList = () => {
-    const allBeers: Beer[] = useSelector((state: RootState) => state.beerPunk.allBeers);
+    const allBeers: Beer[] = useSelector((state: RootState) => state.beers.allBeers);
     const favorites = useSelector((state: RootState) => state.favorites.favorites);
     const dispatch = useAppDispatch();
 

@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { fetchBeerSuggestions } from '../../services/api';
 import { Beer, DEBOUNCE_DELAY } from '../../utils/consts';
-import { updateSuggestions } from '../../store/slices/beerPunkSlice';
+import { updateSuggestions } from '../../store/slices/beersSlice';
 
 import styles from './SearchBar.module.css';
 
@@ -11,7 +11,7 @@ import styles from './SearchBar.module.css';
 const SearchBar = () => {
     const [beerNameSearch, setBeerNameSearch] = useState<string>('');                    // state from the search bar user input  
     //const [suggestions, setSuggestions] = useState<Beer[] | undefined>();                          // suggested beers state based on the user searching
-    const { suggestions } = useSelector((state) => state.beerPunk);
+    const { suggestions } = useSelector((state) => state.beers);
 
     const dispatch = useDispatch();
 

@@ -1,11 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
+
 import Header from './components/Header/Header';
 import BeerList from './pages/BeerList/BeerList';
 import Favorites from './pages/Favorites/Favorites';
 import RandomBeer from './pages/RandomBeer/RandomBeer';
 import Login from './pages/Login/Login';
 import Footer from './components/Footer/Footer';
+
 import { store } from './store/store'
 
 import './App.css';
