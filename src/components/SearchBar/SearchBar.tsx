@@ -1,13 +1,19 @@
 import { ChangeEvent, useEffect, useState } from 'react';
-import { fetchBeerSuggestions } from '../../services/api';
+import { useSelector, useDispatch } from "react-redux";
 
+import { fetchBeerSuggestions } from '../../services/api';
 import { Beer, DEBOUNCE_DELAY } from '../../utils/consts';
+import { updateSuggestions } from '../../store/slices/beerPunkSlice';
 
 import styles from './SearchBar.module.css';
 
+
 const SearchBar = () => {
-    const [beerNameSearch, setBeerNameSearch] = useState<string>('');                    // state from the search bar input  
-    const [suggestions, setSuggestions] = useState<Beer[] | undefined>();                          // suggested beers state based on the user searching
+    const [beerNameSearch, setBeerNameSearch] = useState<string>('');                    // state from the search bar user input  
+    //const [suggestions, setSuggestions] = useState<Beer[] | undefined>();                          // suggested beers state based on the user searching
+    const { suggestions } = useSelector((state) => state.beerPunk);
+
+    const dispatch = useDispatch();
 
     useEffect(() => {                                                                    // function to capture and set user search input, based on: https://dev.to/jeetvora331/javascript-debounce-easiest-explanation--29hc
         const handler = setTimeout(() => {
@@ -23,7 +29,9 @@ const SearchBar = () => {
         const fetchData = async () => {
             if (beerNameSearch) {
                 const suggestions = await fetchBeerSuggestions(beerNameSearch);
-                setSuggestions(suggestions);
+                dispatch(updateSuggestions(suggestions));
+
+
             } else {
                 setSuggestions([]);
             }
@@ -34,30 +42,30 @@ const SearchBar = () => {
 
     const renderSuggestions = () => {
         return suggestions?.map((suggestion) => (
-            <div key={suggestion.id} onClick={() => handleSuggestionClick(suggestion.name)}>
+            <div key={suggestion.id}>
                 {suggestion.name}
             </div>
         ));
     };
 
     const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {                     // if they click on other suggestion on the list it gets overwritten or if they continue to type it gets cleared
-        localStorage.removeItem('selectedBeerName');                                      // Clear the previous selection
+        // localStorage.removeItem('selectedBeerName');   
+        // Clear the previous selection
         setBeerNameSearch(e.target.value);
     };
 
-    const handleSuggestionClick = (beerName: string) => {                                 // if the user clicks on one of the suggestions, the selection is saved in local storage TO DO: we should show info on that clicked suggestion
-        localStorage.setItem('selectedBeerName', beerName);
-    };
 
     return (
         <div className={styles.container}>
             <input
+                name='search'
                 type="text"
                 className={styles.textbox}
                 placeholder="Search by beer name"
                 value={beerNameSearch}
                 onChange={handleInputChange}
             />
+            {/* those suggestions should be rendered in the beerlist in order what appears to change according to user input */}
             {suggestions
                 ? (suggestions.length > 0) && (
                     <div className={styles.suggestions}>

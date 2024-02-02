@@ -1,18 +1,7 @@
 import axios from 'axios';
 
-import { Beer, REGEX_FORMATTED_QUERY } from '../utils/consts';
+import { BASIC_URL, Beer, REGEX_FORMATTED_QUERY } from '../utils/consts';
 
-
-export const BASIC_URL = 'https://api.punkapi.com/v2/beers';
-
-// export const fetchAllBeers = async () => {
-//     try {
-//         const { data } = await axios.get<Beer[]>(BASIC_URL);
-//         return data
-//     } catch (error) {
-//         console.log(error);
-//     }
-// };
 
 // Fetch beer suggestions based on the beer name
 export const fetchBeerSuggestions = async (beerNameSearch: string): Promise<Beer[]> => {
