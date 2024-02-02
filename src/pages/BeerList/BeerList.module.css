@@ -41,3 +41,14 @@
 .tagline {
     font-style: italic;
 }
+
+.starIcon {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin-right: 10px;
+    margin-top: 10px;
+    font-size: 24px;
+    color: #FFD43B;
+    cursor: pointer;
+}

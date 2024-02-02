@@ -1,10 +1,8 @@
-.starIcon {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin-right: 10px;
-    margin-top: 10px;
-    font-size: 24px;
-    color: #FFD43B;
-    cursor: pointer;
+.single {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3em;
+    height: 25rem;
+    width: 23rem;
 }
