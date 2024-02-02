@@ -5,6 +5,7 @@ import { toggleFavorite } from "../../store/slices/favoritesSlice";
 import { useAppDispatch } from "../../store/store";
 import { RootState } from "../../store/store";
 import { fetchAllBeers } from "../../store/slices/beerPunkSlice";
+
 import BeerCard from "../../components/BeerCard/BeerCard";
 import { Beer } from "../../utils/consts";
 
@@ -32,7 +33,6 @@ const BeerList = () => {
 
     return (
         <div>
-
             <div className={styles.cardContainer}>
                 {renderBeerCards()}
             </div>

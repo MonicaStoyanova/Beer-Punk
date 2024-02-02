@@ -1,8 +1,7 @@
-.single {
+.cardContainer {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
+    padding: 2em 16em;
     gap: 3em;
-    height: 25rem;
-    width: 23rem;
 }

@@ -20,7 +20,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<BeerList />} />
-          < Route path="/favorite" element={<Favorites />} />
+          <Route path="/favorite" element={<Favorites />} />
           <Route path="/random-beer" element={<RandomBeer />} />
           <Route path="/login" element={<Login />} />
         </Routes>
