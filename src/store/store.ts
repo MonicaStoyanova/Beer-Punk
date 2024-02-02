@@ -1,9 +1,8 @@
-
 import { configureStore } from "@reduxjs/toolkit";
+import { useDispatch } from "react-redux";
 
 import beersReducer from './slices/beersSlice';
 import favoritesReducer from './slices/favoritesSlice';
-import { useDispatch } from "react-redux";
 
 export const store = configureStore({
     reducer: {

@@ -4,6 +4,7 @@ import { RootState } from "../../store/store";
 import { Beer } from "../../utils/consts";
 
 import BeerCard from "../../components/BeerCard/BeerCard";
+
 import styles from './Favorites.module.css'
 
 const Favorites = () => {
