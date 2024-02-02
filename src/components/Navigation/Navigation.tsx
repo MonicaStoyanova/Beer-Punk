@@ -8,7 +8,7 @@ const Navigation = () => {
             <ul className={styles.navigationList}>
                 <li><Link to="/favorite">Favorites</Link></li>
                 <li><Link to="/random-beer">Random Beer</Link></li>
-                <li><Link to="/login">Login</Link></li>
+                <li><Link to="/logout">Logout</Link></li>
             </ul>
         </nav>
     );

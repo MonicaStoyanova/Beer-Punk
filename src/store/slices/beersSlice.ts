@@ -36,7 +36,7 @@ export const fetchRandomBeer = createAsyncThunk<Beer[], void, { rejectValue: Err
             return rejectWithValue(new Error('Could not fetch random beer'))
         }
     }
-)
+);
 
 const beersSlice = createSlice({
     name: "beers",

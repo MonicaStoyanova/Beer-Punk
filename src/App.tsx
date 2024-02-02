@@ -5,7 +5,7 @@ import Header from './components/Header/Header';
 import BeerList from './pages/BeerList/BeerList';
 import Favorites from './pages/Favorites/Favorites';
 import RandomBeer from './pages/RandomBeer/RandomBeer';
-import Login from './pages/Login/Login';
+import Logout from './pages/Logout/Logout';
 import Footer from './components/Footer/Footer';
 
 import { store } from './store/store'
@@ -24,7 +24,7 @@ function App() {
           <Route path="/" element={<BeerList />} />
           <Route path="/favorite" element={<Favorites />} />
           <Route path="/random-beer" element={<RandomBeer />} />
-          <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
         </Routes>
         <Footer />
       </Provider>
