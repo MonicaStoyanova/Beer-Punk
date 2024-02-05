@@ -1,7 +1,5 @@
 .navigationContainer {
     display: flex;
-
-
 }
 
 .navigationList {
@@ -16,5 +14,15 @@ ul.navigationList>li {
     width: 10em;
     padding: 0.3em 0.5em;
     border: 2px solid black;
+
+}
+
+@media (max-width:1250px) {
+
+    .navigationList {
+        display: flex;
+
+        flex-direction: column;
+    }
 
 }

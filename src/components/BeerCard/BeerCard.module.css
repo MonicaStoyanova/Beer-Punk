@@ -44,3 +44,11 @@
     color: #FFD43B;
     cursor: pointer;
 }
+
+@media screen and (max-width:685px) {
+
+    .card {
+        height: 100%;
+        width: 100vw;
+    }
+}

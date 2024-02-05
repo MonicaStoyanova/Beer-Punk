@@ -1,6 +1,7 @@
 html {
     box-sizing: border-box;
     font-size: 16px;
+
 }
 
 *,
@@ -8,6 +9,7 @@ html {
 *:after {
     box-sizing: inherit;
 }
+
 
 body,
 h1,
