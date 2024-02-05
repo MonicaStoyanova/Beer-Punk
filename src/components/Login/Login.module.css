@@ -1,0 +1,48 @@
+.metaMaskContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: #f7f8fa;
+    color: #333;
+    font-family: 'Arial', sans-serif;
+}
+
+.title {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.connectBtn {
+    background-color: #4caf50;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.connectBtn:hover {
+    background-color: #45a049;
+}
+
+.user {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #666;
+}
+
+
+.errorMessage {
+    color: #d9534f;
+    margin-top: 10px;
+}
