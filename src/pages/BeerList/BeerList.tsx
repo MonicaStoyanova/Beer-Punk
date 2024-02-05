@@ -23,6 +23,7 @@ const BeerList = () => {
 
     const renderBeerCards = () => {
         const beersToRender = suggestions.length > 0 ? suggestions : allBeers;
+
         return beersToRender.map(beer => (
             <BeerCard
                 key={beer.id}

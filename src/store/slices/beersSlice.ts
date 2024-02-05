@@ -26,18 +26,6 @@ export const fetchAllBeers = createAsyncThunk<Beer[], void, { rejectValue: Error
     }
 );
 
-export const fetchRandomBeer = createAsyncThunk<Beer[], void, { rejectValue: Error }>(
-    "beer/getRandomBeer",
-    async (_, { rejectWithValue }) => {
-        try {
-            const { data } = await axios.get<Beer[]>(BASIC_URL + "/random");
-            return data;
-        } catch (error) {
-            return rejectWithValue(new Error('Could not fetch random beer'));
-        }
-    }
-);
-
 export const fetchBeerSuggestions = createAsyncThunk<Beer[], string, { rejectValue: string }>(
     'beers/fetchBeerSuggestions',
     async (beerNameSearch, { rejectWithValue }) => {
@@ -55,6 +43,20 @@ export const fetchBeerSuggestions = createAsyncThunk<Beer[], string, { rejectVal
     }
 );
 
+export const fetchRandomBeer = createAsyncThunk<Beer[], void, { rejectValue: Error }>(
+    "beer/getRandomBeer",
+    async (_, { rejectWithValue }) => {
+        try {
+            const { data } = await axios.get<Beer[]>(BASIC_URL + "/random");
+            return data;
+        } catch (error) {
+            return rejectWithValue(new Error('Could not fetch random beer'));
+        }
+    }
+);
+
+
+
 const beersSlice = createSlice({
     name: "beers",
     initialState,
@@ -62,30 +64,30 @@ const beersSlice = createSlice({
         updateSuggestions: (state, action) => {
             state.suggestions = action.payload;
         },
+        resetSuggestions: (state) => {
+            state.suggestions = initialState.suggestions;
+        },
         updateRandomBeer: (state, action) => {
             state.randomBeer = action.payload
         },
-
         resetRandomBeer: (state) => {
             state.randomBeer = initialState.randomBeer;
         },
-        resetSuggestions: (state) => {
-            state.suggestions = initialState.suggestions;
-        }
     },
     extraReducers: (builder) => {
         builder.addCase(fetchAllBeers.fulfilled, (state, action) => {
             state.allBeers = action.payload ?? [];
         })
-        builder.addCase(fetchRandomBeer.fulfilled, (state, action) => {
-            state.randomBeer = action.payload ?? [];
-        })
+        builder
             .addCase(fetchBeerSuggestions.fulfilled, (state, action) => {
                 state.suggestions = action.payload;
             })
-            .addCase(fetchBeerSuggestions.rejected, (state, action) => {
+            .addCase(fetchBeerSuggestions.rejected, (_, action) => {
                 console.error('Fetch beer suggestions failed:', action.payload);
-            });
+            })
+            .addCase(fetchRandomBeer.fulfilled, (state, action) => {
+                state.randomBeer = action.payload ?? [];
+            })
     }
 });
 

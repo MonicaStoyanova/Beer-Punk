@@ -6,11 +6,11 @@ import { fetchBeerSuggestions, resetSuggestions } from '../../store/slices/beers
 import styles from './SearchBar.module.css';
 
 const SearchBar = () => {
-    const [beerNameSearch, setBeerNameSearch] = useState<string>('');                    // state from the search bar user input                         // suggested beers state based on the user searching
+    const [beerNameSearch, setBeerNameSearch] = useState<string>('');                    // state from the search bar user input
 
     const dispatch = useAppDispatch();
 
-    useEffect(() => {                                                                    // function to capture and set user search input, based on: https://dev.to/jeetvora331/javascript-debounce-easiest-explanation--29hc
+    useEffect(() => {
         const handler = setTimeout(() => {
             setBeerNameSearch(beerNameSearch);
         }, DEBOUNCE_DELAY);                                                              // Debounce delay, sets the typed word after half a second
@@ -23,7 +23,6 @@ const SearchBar = () => {
     useEffect(() => {                                                                    // fetching data based on the user searched word
         const fetchData = async () => {
             if (beerNameSearch) {
-
                 dispatch(fetchBeerSuggestions(beerNameSearch));
             } else {
                 dispatch(resetSuggestions());
@@ -33,10 +32,9 @@ const SearchBar = () => {
         fetchData();
     }, [beerNameSearch]);
 
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {                     // if they click on other suggestion on the list it gets overwritten or if they continue to type it gets cleared
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setBeerNameSearch(e.target.value);
     };
-
 
     return (
         <div className={styles.container}>
