@@ -14,7 +14,10 @@ import styles from "./BeerList.module.css";
 const BeerList = () => {
     const allBeers: Beer[] = useSelector((state: RootState) => state.beers.allBeers);
     const favorites: Beer[] = useSelector((state: RootState) => state.favorites.favorites);
-    const { suggestions } = useSelector((state: RootState) => state.beers);
+    const { suggestions, searchPerformed } = useSelector((state: RootState) => ({
+        suggestions: state.beers.suggestions,
+        searchPerformed: state.beers.searchPerformed,
+    }));
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -22,6 +25,9 @@ const BeerList = () => {
     }, []);
 
     const renderBeerCards = () => {
+        if (suggestions.length === 0 && searchPerformed) {
+            return "No beers found"
+        }
         const beersToRender = suggestions.length > 0 ? suggestions : allBeers;
 
         return beersToRender.map(beer => (

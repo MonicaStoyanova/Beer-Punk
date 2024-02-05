@@ -1,38 +1,37 @@
 import { ChangeEvent, useEffect, useState } from 'react';
 import { useAppDispatch } from '../../store/store';
 import { DEBOUNCE_DELAY } from '../../utils/consts';
-import { fetchBeerSuggestions, resetSuggestions } from '../../store/slices/beersSlice';
+import { fetchBeerSuggestions, resetSuggestions, updateSearchPerformed } from '../../store/slices/beersSlice';
 
 import styles from './SearchBar.module.css';
 
 const SearchBar = () => {
-    const [beerNameSearch, setBeerNameSearch] = useState<string>('');                    // state from the search bar user input
+    const [beerNameSearch, setBeerNameSearch] = useState<string>('');
+    const [searchAfterDebounce, setSearchAfterDebounce] = useState<string>(beerNameSearch);
 
     const dispatch = useAppDispatch();
 
     useEffect(() => {
         const handler = setTimeout(() => {
-            setBeerNameSearch(beerNameSearch);
-        }, DEBOUNCE_DELAY);                                                              // Debounce delay, sets the typed word after half a second
+            setSearchAfterDebounce(beerNameSearch);
+        }, DEBOUNCE_DELAY);
 
         return () => {
-            clearTimeout(handler);                                                       // resets the timer; every keystroke restarts that timer
+            clearTimeout(handler);
         };
     }, [beerNameSearch]);
 
-    useEffect(() => {                                                                    // fetching data based on the user searched word
-        const fetchData = async () => {
-            if (beerNameSearch) {
-                dispatch(fetchBeerSuggestions(beerNameSearch));
-            } else {
-                dispatch(resetSuggestions());
-            }
-        };
+    useEffect(() => {
+        if (searchAfterDebounce) {
+            dispatch(fetchBeerSuggestions(searchAfterDebounce));
+            dispatch(updateSearchPerformed(true));
+        } else {
+            dispatch(resetSuggestions());
+            dispatch(updateSearchPerformed(false)); // Reset searchPerformed when input is cleared
+        }
+    }, [searchAfterDebounce, dispatch]);
 
-        fetchData();
-    }, [beerNameSearch]);
-
-    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {  // handleInputChange is called with each keystroke, updating the beerNameSearch state with the current value of the input field.
         setBeerNameSearch(e.target.value);
     };
 

@@ -6,11 +6,13 @@ import { BASIC_URL, Beer, REGEX_FORMATTED_QUERY } from "../../utils/consts";
 interface BeerState {
     allBeers: Beer[];
     suggestions: Beer[];
+    searchPerformed: boolean;
     randomBeer: Beer[];
 }
 const initialState: BeerState = {
     allBeers: [],
     suggestions: [],
+    searchPerformed: false,
     randomBeer: [],
 };
 
@@ -67,6 +69,9 @@ const beersSlice = createSlice({
         resetSuggestions: (state) => {
             state.suggestions = initialState.suggestions;
         },
+        updateSearchPerformed: (state, action) => {
+            state.searchPerformed = action.payload;
+        },
         updateRandomBeer: (state, action) => {
             state.randomBeer = action.payload
         },
@@ -93,6 +98,7 @@ const beersSlice = createSlice({
 
 export const {
     updateSuggestions,
+    updateSearchPerformed,
     updateRandomBeer,
     resetRandomBeer,
     resetSuggestions
