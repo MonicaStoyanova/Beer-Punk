@@ -9,7 +9,7 @@ const Header = () => {
 
     return (
         <header className={styles.header}>
-            <h1><Link to='/'>Bear Punk Logo</Link> </h1>
+            <h1><Link to='/'>Beer Punk Logo</Link> </h1>
             <SearchBar />
             <Navigation />
 

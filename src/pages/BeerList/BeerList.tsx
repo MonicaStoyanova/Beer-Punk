@@ -14,6 +14,7 @@ import styles from "./BeerList.module.css";
 const BeerList = () => {
     const allBeers: Beer[] = useSelector((state: RootState) => state.beers.allBeers);
     const favorites: Beer[] = useSelector((state: RootState) => state.favorites.favorites);
+    const { suggestions } = useSelector((state: RootState) => state.beers);
     const dispatch = useAppDispatch();
 
     useEffect(() => {
@@ -21,7 +22,8 @@ const BeerList = () => {
     }, []);
 
     const renderBeerCards = () => {
-        return allBeers.map(beer => (
+        const beersToRender = suggestions.length > 0 ? suggestions : allBeers;
+        return beersToRender.map(beer => (
             <BeerCard
                 key={beer.id}
                 beer={beer}
