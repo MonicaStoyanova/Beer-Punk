@@ -25,20 +25,20 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        {!isLoggedIn ? (
+        {/* {!isLoggedIn ? (
           <Login onLogin={() => setIsLoggedIn(true)} />
-        ) : (
-          <>
-            <Header />
-            <Routes>
-              <Route path="/" element={<BeerList />} />
-              <Route path="/favorite" element={<Favorites />} />
-              <Route path="/random-beer" element={<RandomBeer />} />
-              <Route path="/logout" element={<Logout />} />
-            </Routes>
-            <Footer />
-          </>
-        )}
+        ) : ( */}
+        <>
+          <Header />
+          <Routes>
+            <Route path="/" element={<BeerList />} />
+            <Route path="/favorite" element={<Favorites />} />
+            <Route path="/random-beer" element={<RandomBeer />} />
+            <Route path="/logout" element={<Logout />} />
+          </Routes>
+          <Footer />
+        </>
+        {/* )} */}
       </Provider>
     </>
   );
