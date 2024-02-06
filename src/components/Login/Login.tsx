@@ -22,7 +22,7 @@ const Login = ({ onLogin }: LoginProps) => {
         if (window.ethereum) {
             window.ethereum.request({ method: "eth_requestAccounts" })
                 .then((result: string[]) => {
-                    accountChanged([result[0]])
+                    accountChanged(result[0])
                     onLogin();
                 })
                 .catch((error: Error) => {

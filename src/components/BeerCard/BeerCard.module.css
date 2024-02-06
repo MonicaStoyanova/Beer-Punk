@@ -4,12 +4,13 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    height: 23rem;
+    height: auto;
     width: 23rem;
     align-items: center;
     border: 1px solid #BDC5D3;
     border-radius: 5%;
     text-align: center;
+    padding: 0.5rem 0;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -49,6 +50,6 @@
 
     .card {
         height: 100%;
-        width: 100vw;
+        width: 100%;
     }
 }

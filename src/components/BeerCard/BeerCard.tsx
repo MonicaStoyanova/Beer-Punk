@@ -24,6 +24,7 @@ const BeerCard: React.FC<BeerCardProps> = ({ beer, isFavorite, toggleFavorite })
             audioRef.current.currentTime = 0;
         }
     }, []);
+
     const playAudio = () => {
         // If there's any audio playing, stop it before playing the new one
         if (!audioRef.current.paused) {

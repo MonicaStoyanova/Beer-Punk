@@ -10,7 +10,7 @@ import { Beer } from "../../utils/consts";
 import BeerCard from "../../components/BeerCard/BeerCard";
 
 import styles from './RandomBeer.module.css'
-
+// NEW REQUEST ON EVERY CLICK ON RANDOM BEER
 const RandomBeer = () => {
     const dispatch = useAppDispatch();
 
