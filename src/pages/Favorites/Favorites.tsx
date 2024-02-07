@@ -8,7 +8,6 @@ import BeerCard from "../../components/BeerCard/BeerCard";
 import styles from './Favorites.module.css'
 import { toggleFavorite } from "../../store/slices/favoritesSlice";
 
-// SUGGESTION:save only the id to an array and then fetch by id mapping over the array
 const Favorites = () => {
     const favorites: Beer[] = useSelector((state: RootState) => state.favorites.favorites);
     const dispatch = useAppDispatch();

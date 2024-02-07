@@ -1,12 +1,13 @@
 import { useEffect } from "react";
-
 import { useSelector } from "react-redux";
+
 import { toggleFavorite } from "../../store/slices/favoritesSlice";
 import { useAppDispatch } from "../../store/store";
 import { RootState } from "../../store/store";
 import { fetchAllBeers } from "../../store/slices/beersSlice";
 import { Beer } from "../../utils/consts";
-
+import sound from "../../assets/beer-open.mp3"
+import useAudioPlayer from "../../hooks/useAudioPlayer";
 import BeerCard from "../../components/BeerCard/BeerCard";
 
 import styles from "./BeerList.module.css";
@@ -24,6 +25,8 @@ const BeerList = () => {
         dispatch(fetchAllBeers())
     }, []);
 
+    const { playAudio } = useAudioPlayer(sound);
+
     const renderBeerCards = () => {
         if (suggestions.length === 0 && searchPerformed) {
             return "No beers found"
@@ -34,6 +37,7 @@ const BeerList = () => {
             <BeerCard
                 key={beer.id}
                 beer={beer}
+                playAudio={playAudio}
                 isFavorite={favorites.some(favorite => favorite.id === beer.id)}
                 toggleFavorite={() => dispatch(toggleFavorite(beer))}
             />
@@ -42,7 +46,7 @@ const BeerList = () => {
 
     return (
         <div>
-            <div className={styles.cardContainer}>
+            <div className={styles.cardContainer} onClick={playAudio}>
                 {renderBeerCards()}
             </div>
         </div>
