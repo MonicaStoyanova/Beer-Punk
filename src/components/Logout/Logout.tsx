@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./Logout.module.css";
 
 type LogoutProps = {
@@ -6,14 +7,20 @@ type LogoutProps = {
 };
 
 const Logout = ({ onLogout }: LogoutProps) => {
-  const [message, setMessage] = (useState < string) | (null > null);
+  const [message, setMessage] = useState<string | null>(null);
+  const navigate = useNavigate();
 
   const disconnectWallet = () => {
     // Clear the account information
     localStorage.removeItem("defaultAccount");
     setMessage("Wallet disconnected successfully.");
 
-    onLogout();
+
+    setTimeout(() => {
+      onLogout();
+      navigate('/');
+    }, 2000)
+
   };
 
   return (

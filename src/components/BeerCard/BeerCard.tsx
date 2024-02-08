@@ -6,7 +6,6 @@ import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 import styles from './BeerCard.module.css';
 
-
 interface BeerCardProps {
     beer: Beer;
     isFavorite?: boolean;
@@ -33,13 +32,13 @@ const BeerCard: React.FC<BeerCardProps> = ({ beer, isFavorite, toggleFavorite, p
                 </p>
             </div>
             {isFavorite !== undefined && (
-                <div className={styles.starIcon}>
+                <button className={styles.starIcon}>
                     <FontAwesomeIcon
                         icon={isFavorite ? faStar : farStar}
                         onClick={() => toggleFavorite && toggleFavorite(beer)}
                         title={!isFavorite ? "Add to favorites" : "Remove from favorites"}
                     />
-                </div>
+                </button>
             )}
         </div>
     );
