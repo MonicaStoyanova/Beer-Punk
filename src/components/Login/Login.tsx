@@ -16,7 +16,6 @@ const Login = ({ onLogin }: LoginProps) => {
     const [errorMessage, setErrorMessage] = useState<string | null>(null)
     const [defaultAccount, setDefaultAccount] = useState<string>("None")
 
-
     const connectWallet = () => {
 
         if (window.ethereum) {

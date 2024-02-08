@@ -2,11 +2,10 @@ import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../store/store";
 
 import { Beer } from "../../utils/consts";
-
+import { toggleFavorite } from "../../store/slices/favoritesSlice";
 import BeerCard from "../../components/BeerCard/BeerCard";
 
 import styles from './Favorites.module.css'
-import { toggleFavorite } from "../../store/slices/favoritesSlice";
 
 const Favorites = () => {
     const favorites: Beer[] = useSelector((state: RootState) => state.favorites.favorites);

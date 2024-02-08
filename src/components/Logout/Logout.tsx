@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import styles from "./Logout.module.css";
 
 type LogoutProps = {
