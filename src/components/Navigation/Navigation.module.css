@@ -14,6 +14,7 @@ ul.navigationList>li {
     width: 10em;
     padding: 0.3em 0.5em;
     border: 2px solid black;
+    background-color: transparent;
 
 }
 
