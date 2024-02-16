@@ -3,6 +3,7 @@ import { RootState, useAppDispatch } from "../../store/store";
 
 import { Beer } from "../../utils/consts";
 import { toggleFavorite } from "../../store/slices/favoritesSlice";
+
 import sound from "../../assets/beer-open.mp3"
 import useAudioPlayer from "../../hooks/useAudioPlayer";
 
