@@ -17,6 +17,15 @@ ul.navigationList>li {
 
 }
 
+.randomBeer {
+    background-color: transparent;
+    border: none;
+}
+
+.randomBeer:hover {
+    cursor: pointer;
+}
+
 @media (max-width:1250px) {
 
     .navigationList {
