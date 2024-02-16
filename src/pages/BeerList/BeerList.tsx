@@ -46,7 +46,7 @@ const BeerList = () => {
 
     return (
         <div>
-            <div className={styles.cardContainer} onClick={playAudio}>
+            <div className={styles.cardContainer} >
                 {renderBeerCards()}
             </div>
         </div>
