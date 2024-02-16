@@ -1,5 +1,5 @@
-# Project Title
-Beer Punk
+# Beer Punk
+
 
 ## React + TypeScript + Vite
 
