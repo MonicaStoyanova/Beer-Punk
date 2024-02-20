@@ -16,9 +16,9 @@ interface BeerCardProps {
 const BeerCard: React.FC<BeerCardProps> = ({ beer, isFavorite, toggleFavorite, playAudio }) => {
 
     return (
-        <div className={styles.card} onClick={playAudio}>
+        <div className={styles.card} >
             <div className={styles.cardContent}>
-                <img src={beer.image_url} alt={beer.name} />
+                <img src={beer.image_url} alt={beer.name} onClick={playAudio} />
                 <h3>{beer.name}</h3>
                 <p className={styles.tagline}>{beer.tagline}</p>
                 <p>

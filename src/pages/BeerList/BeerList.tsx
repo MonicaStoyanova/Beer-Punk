@@ -5,9 +5,12 @@ import { toggleFavorite } from "../../store/slices/favoritesSlice";
 import { useAppDispatch } from "../../store/store";
 import { RootState } from "../../store/store";
 import { fetchAllBeers } from "../../store/slices/beersSlice";
+
 import { Beer } from "../../utils/consts";
+
 import sound from "../../assets/beer-open.mp3"
 import useAudioPlayer from "../../hooks/useAudioPlayer";
+
 import BeerCard from "../../components/BeerCard/BeerCard";
 
 import styles from "./BeerList.module.css";
@@ -46,7 +49,7 @@ const BeerList = () => {
 
     return (
         <div>
-            <div className={styles.cardContainer} onClick={playAudio}>
+            <div className={styles.cardContainer} >
                 {renderBeerCards()}
             </div>
         </div>

@@ -1,4 +1,4 @@
-import { ethers } from "ethers";
+import { ethers } from "ethers"; // this import is needed in order for the component to work properly
 import { useState } from "react";
 import styles from "./Login.module.css"
 declare global {

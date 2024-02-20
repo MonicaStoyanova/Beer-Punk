@@ -19,6 +19,7 @@
     padding-top: 1em;
     width: 230px;
     height: 230px;
+    border: transparent;
 }
 
 .card h3 {
