@@ -16,8 +16,8 @@ interface BeerCardProps {
 const BeerCard: React.FC<BeerCardProps> = ({ beer, isFavorite, toggleFavorite, playAudio }) => {
 
     return (
-        <div className={styles.card} >
-            <div className={styles.cardContent}>
+        <div className={`${styles.card} card`}>
+            <div className={`${styles.cardContent} card-content`}>
                 <img src={beer.image_url} alt={beer.name} onClick={playAudio} />
                 <h3>{beer.name}</h3>
                 <p className={styles.tagline}>{beer.tagline}</p>
@@ -32,7 +32,7 @@ const BeerCard: React.FC<BeerCardProps> = ({ beer, isFavorite, toggleFavorite, p
                 </p>
             </div>
             {isFavorite !== undefined && (
-                <button className={styles.starIcon}>
+                <button className={`${styles.starIcon} star-icon`}>
                     <FontAwesomeIcon
                         icon={isFavorite ? faStar : farStar}
                         onClick={() => toggleFavorite && toggleFavorite(beer)}
