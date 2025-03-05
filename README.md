@@ -1,4 +1,5 @@
 # Beer Punk
+Authentication is possible with MetaMask wallet
 
 To start the project:
 For local execution, use npm install and npm run dev.
